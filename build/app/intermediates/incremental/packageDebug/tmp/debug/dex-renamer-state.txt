@@ -1,0 +1,4 @@
+#Mon Oct 07 20:38:24 NPT 2019
+base.0=C\:\\Users\\Bibek Timsina\\Desktop\\Development\\FlutterApps\\algorithms\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
