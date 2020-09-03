@@ -138,6 +138,9 @@ class SortDetailsScreenState extends State<SortDetailsScreen> {
       case insertionSortTitle:
         insertionSort();
         break;
+      case mergeSortTitle:
+        mergeSort(numbers, 0, n - 1);
+        break;
       default:
         break;
     }
@@ -266,6 +269,63 @@ class SortDetailsScreenState extends State<SortDetailsScreen> {
         j = j - 1;
       }
       numbers[j + 1] = key;
+    }
+    isCancelled ? cancelledSorting() : finishedSorting();
+  }
+
+  void merge(numbers, l, m, r) async {
+    startSorting();
+    int i, j, k;
+    int n1 = m - l + 1;
+    int n2 = r - m;
+
+    List left = new List(n1);
+    List right = new List(n2);
+    for (i = 0; i < n1; i++) {
+      left[i] = numbers[l + i];
+    }
+    for (j = 0; j < n2; j++) {
+      right[j] = numbers[m + j + 1];
+    }
+    i = 0;
+    j = 0;
+    k = l;
+    while (i < n1 && j < n2) {
+      if (left[i] <= right[j]) {
+        numbers[k] = left[i];
+        updatePointers([l + i, l + j]);
+        i++;
+      } else {
+        numbers[k] = right[j];
+        updatePointers([l + i, l + j]);
+        j++;
+      }
+      await Future.delayed(Duration(seconds: 1));
+      k++;
+    }
+    while (i < n1) {
+      numbers[k] = left[i];
+      updatePointers([l + i, l + j]);
+      i++;
+      k++;
+    }
+    while (j < n2) {
+      numbers[k] = right[j];
+      updatePointers([l + i, l + j]);
+      j++;
+      k++;
+    }
+  }
+
+  void mergeSort(numbers, l, r) async {
+    startSorting();
+    if (l < r) {
+      int m = (l + (r - l) / 2).toInt();
+      //updatePointers([m]);
+      await mergeSort(numbers, l, m);
+      await mergeSort(numbers, m + 1, r);
+      await Future.delayed(Duration(seconds: 1));
+      await merge(numbers, l, m, r);
     }
     isCancelled ? cancelledSorting() : finishedSorting();
   }

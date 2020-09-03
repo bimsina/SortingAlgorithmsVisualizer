@@ -11,12 +11,14 @@ const Color activeData = Color(0xff1DD75F);
 const String bubbleSortTitle = 'Bubble Sort';
 const String selectionSortTitle = 'Selection Sort';
 const String insertionSortTitle = 'Insertion Sort';
+const String mergeSortTitle = 'Merge Sort';
 
 //ComplexityString
 const bigOh = 'O';
 const logN = 'log(n)';
 const nsquare = 'n2';
 const logNsquare = 'log(n2)';
+const nlogN = 'nlog(n)';
 
 //Algorithms
 final List<SortingAlgorithm> sortingAlgorithmsList = [
@@ -39,6 +41,13 @@ final List<SortingAlgorithm> sortingAlgorithmsList = [
     complexity: logNsquare,
     resources: [
       Resource('GeeksForGeeks', 'https://www.geeksforgeeks.org/bubble-sort/'),
+    ],
+  ),
+  SortingAlgorithm(
+    title: mergeSortTitle,
+    complexity: nlogN,
+    resources: [
+      Resource('GeeksForGeeks', 'https://www.geeksforgeeks.org/merge-sort/'),
     ],
   ),
 ];
